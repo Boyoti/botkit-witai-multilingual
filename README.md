@@ -5,7 +5,7 @@ Unleash the power of Wit.ai's Natural Language Processing to your Botkit bot wit
 
 
 ## Installation
-In order to utilize wit.ai's service you will need to create an account at [Wit.ai](https://wit.ai/). Grab the *access token* at Settings as shown below:
+In order to utilize wit.ai's service you will need to create an account at [Wit.ai](https://wit.ai/) **and a Wit.ai app for each language**. Grab the *access tokens* at Settings as shown below:
 
 ![Screenshot](https://s30.postimg.org/5o330d21t/Wit_ai_screenshot.png)
 
@@ -13,7 +13,7 @@ In order to utilize wit.ai's service you will need to create an account at [Wit.
 Next you will need to add botkit-witai as a dependency to your Botkit bot:
 
 ```
-npm install --save botkit-witai
+npm install --save botkit-witai-multiligual
 ```
 
 Enable the middleware with the following options:
@@ -21,17 +21,27 @@ Enable the middleware with the following options:
 * `minConfidence` - (*optional*) Minimum Wit.ai's entities confidence value to be considered. Valid value range is from **0.1** to **1**. **0.5** is the default.
 * `logLevel` - (*optional*) Log level for the middleware. Valid values are: **'debug', 'info', 'warning', 'error'**.
 
+** Works only with Facebook bots and requires [`botkit-middleware-fbuser`](https://github.com/mrbot-ai/botkit-middleware-fbuser) **
+
 Example:
 ```js
-var wit = require('botkit-witai')({
-    tokens:{
-     default: <my_witai_default_token>,
-     fr_CA: <my_witai_fr_CA_token>
-    }
-    minConfidence: 0.6,
-    logLevel: 'debug'
+
+var fbuser = require('botkit-middleware-fbuser')({
+    accessToken:'<fb_access_token>',
+    fields: ['first_name', 'last_name', 'locale', 'profile_pic','timezone','gender','is_payment_enabled'],
+    logLevel:'error'
 });
 
+var wit = require('botkit-witai-multilingual')({
+    tokens:{
+     default: '<witai_default_app_token>',
+     fr_CA: '<witai_fr_CA_app_token>'
+    },
+    minConfidence: 0.6,
+    logLevel: 'error'
+});
+
+controller.middleware.receive.use(fbuser.receive)
 controller.middleware.receive.use(wit.receive);
 ```
 ## Usage
