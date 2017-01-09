@@ -1,1 +1,1 @@
-module.exports = require('./src/botkit-witai');
+module.exports = require('./src/botkit-witai-multilingual');

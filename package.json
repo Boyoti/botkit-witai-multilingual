@@ -1,30 +1,30 @@
 {
-  "name": "botkit-witai",
-  "version": "1.0.7",
-  "description": "Botkit middleware for Wit.ai",
+  "name": "botkit-witai-multilingual",
+  "version": "1.0.0",
+  "description": "Botkit middleware for multilingual projects with Wit.ai",
   "main": "index.js",
   "scripts": {
-    "start": "node src/botkit-witai.js"
+    "start": "node src/botkit-witai-multilingual.js"
   },
   "keywords": [
     "botkit",
+    "multilingual",
     "wit.ai",
-    "slack",
     "facebook",
     "messenger"
   ],
   "bugs": {
-    "url": "https://github.com/SnowStormIO/botkit-witai/issues"
+    "url": "https://github.com/mrbot-ai/botkit-witai-multilingual/issues"
   },
   "engines": {
     "node": "6.6.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SnowStormIO/botkit-witai"
+    "url": "git+https://github.com/mrbot-ai/botkit-witai-multilingual"
   },
   "author": {
-    "name": "Rafael Casuso"
+    "name": "Nathan Zylbersztjen"
   },
   "license": "MIT",
   "dependencies": {

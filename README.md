@@ -1,9 +1,9 @@
-# Botkit Middleware for Wit.ai
-[![npm](https://img.shields.io/npm/dt/botkit-witai.svg)]() [![npm](https://img.shields.io/npm/l/botkit-witai.svg?style=flat)]() [![GitHub stars](https://img.shields.io/github/stars/SnowStormIO/botkit-witai.svg?style=social&label=Star)]()
+# Botkit Middleware for multilingual projects with Wit.ai
+[![npm](https://img.shields.io/npm/dt/botkit-witai.svg)]() [![npm](https://img.shields.io/npm/l/botkit-witai.svg?style=flat)]() [![GitHub stars](https://img.shields.io/github/stars/mrbot-ai/botkit-witai-multilingual.svg?style=social&label=Star)]()
 
 Unleash the power of Wit.ai's Natural Language Processing to your Botkit bot with this middleware. All incoming text messages (by default it filters payload derived from Facebook Messenger buttons like *Quick Replies* and *Postbacks*) will go through Wit.ai's API to extract useful *entities* that will be added to the message object so they can be used in the controller.
 
-**This Botkit Middleware is maintained up-to-date with both Wit.ai and Botkit latest versions and it works with all Botkit's supported messaging platforms.** 
+
 ## Installation
 In order to utilize wit.ai's service you will need to create an account at [Wit.ai](https://wit.ai/). Grab the *access token* at Settings as shown below:
 
@@ -17,14 +17,17 @@ npm install --save botkit-witai
 ```
 
 Enable the middleware with the following options:
-* `accessToken` - (**required**) Token to use Wit.ai API
+* `tokens` - (**required**) Tokens to use Wit.ai API
 * `minConfidence` - (*optional*) Minimum Wit.ai's entities confidence value to be considered. Valid value range is from **0.1** to **1**. **0.5** is the default.
 * `logLevel` - (*optional*) Log level for the middleware. Valid values are: **'debug', 'info', 'warning', 'error'**.
 
 Example:
 ```js
 var wit = require('botkit-witai')({
-    accessToken: <my_witai_token>,
+    tokens:{
+     default: <my_witai_default_token>,
+     fr_CA: <my_witai_fr_CA_token>
+    }
     minConfidence: 0.6,
     logLevel: 'debug'
 });
@@ -51,7 +54,7 @@ controller.hears(['spa'], 'message_received', wit.hears, function (bot, message)
       //        }
       //      ]
       //    }
-      
+
       //Your code here
 });
 ```
